@@ -1,0 +1,191 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+  background: url("assets/hackerarkaplan.jpg") no-repeat center top fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  background: url("assets/hackerarkaplan.jpg") no-repeat center top fixed;
+  background-size: cover;
+  
+  /* Flexbox ile dikey ve yatay ortalama */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px; /* Menüye ve başlığa boşluk */
+  box-sizing: border-box;
+}
+
+
+nav {
+	width: 100%;
+	height: 70px;
+	background: rgba(0,0,0,1.00);
+	border-top: 2px solid rgba(250,250,250,.2);
+	border-bottom: 2px solid rgba(250,250,250,.2);
+	position: fixed;
+	top: 0;          /* navbar en üstte */
+	margin: 0;       /* üst ve alt margin kaldırıldı */
+	z-index: 10;
+    border-radius: 0 !important;
+}
+
+
+nav ul{  /*<nav> etiketi içindeki <ul> listenin nasıl görüntüleneceğini ve hizalanacağını ayarlıyor*/
+	display: flex; /* liste elemanlarını yatay olarak sıralar */
+	margin: 0; /*tüm dış boşlukları sıfırlar */
+	padding: 0 100px; /* sol ve sağ iç boşluk 100 piksel olarak ayarlanır.*/
+	margin-left: auto; /* sol taraf boşluğu otomatik olarak ayarlanır.*/
+	margin-right: auto; /* sağ taraf boşluğu otomatik olarak ayarlanır. */ 
+}
+
+nav ul li{ 
+	list-style: none;
+}
+
+nav ul li a{    /*nav menüsündeki filmi izle ve fragmanı izle kısmını düzenler*/
+	display: block;
+	color: rgba(255,255,255,1.00);
+	padding: 0 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	line-height: 70px;
+}
+
+nav ul li a:hover, /*Menüdeki filmi izle ve fragmanı izle kısmının üzerine gelindiğinde arka planlarının yeşil olmasını sağlar*/
+nav ul li a.active{
+	background: rgba(24,180,0,1.00);
+}
+
+h1{ /*başlığı sayfanın üst kısmına ortalanmış ve büyük bir şekilde yerleştirir.*/
+  position: static; /* absolute kaldırdık */
+  font-size: 3em;
+  color: #ddd;
+  letter-spacing: 0.2em;
+  margin-bottom: 40px; /* alt boşluk */
+}
+
+h1 span{  /* metin animasyonu kısımı */
+	opacity: 0;
+	display: inline-block;
+	animation: animate 1s linear forwards;
+}
+@keyframes animate{ /* metin animasyonu kısımı*/
+	0%{opacity:0;
+	transform: rotateX(90deg);
+	filter: blur(10px);}
+	100%{opacity:1;
+	transform: rotateX(0deg);
+	filter: blur(0);}
+}
+
+
+/* metin animasyonu kısımı */
+h1 span:nth-child(1){animation-delay:6s} 
+h1 span:nth-child(2){animation-delay:5s}
+h1 span:nth-child(3){animation-delay:4s}
+h1 span:nth-child(4){animation-delay:3s}
+h1 span:nth-child(5){animation-delay:2s}
+h1 span:nth-child(6){animation-delay:1s}
+
+.soltarafgorseli {
+  position: static; /* absolute kaldırdık */
+  height: 400px;
+  border-radius: 5px;
+  margin-bottom: 50px; /* fotoğraf altı boşluk */
+  max-width: 90%;
+  object-fit: contain;
+}
+
+
+video { /* videoyu 21 saniye sonra yavaş yavaş görünmez yapar. */
+  object-fit: cover;
+  width: 100%;
+  min-height:  310vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  animation: fadeOut 21s forwards;
+}
+
+@keyframes fadeOut {  /* videonun yavaş yavaş kaybolmasını sağlar*/
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+
+@media screen and (max-width: 768px) { /*responsive (duyarlı tasarım) yapmak için kullanılır.*/
+  
+  h1 {
+    font-size: 2em;
+    top: 15%;
+    letter-spacing: 0.1em;
+  }
+
+  .soltarafgorseli {
+    position: static;
+    display: block;
+    margin: 20px auto;
+    width: 80%;
+    height: auto;
+  }
+
+  .sagtarafyazisi {
+    position: static;
+    margin: 20px auto;
+    width: 90%;
+    padding: 20px;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  nav ul li a {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  video {
+  object-fit: cover;
+  width: 100%;
+  min-height: 500vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0; /* En altta */
+  animation: fadeOut 21s forwards; /* Yavaşça kaybolma efekti */
+}
+}
+.uzun-yazi {
+  width: 80%;
+  max-width: 700px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: white;
+  text-align: center; /* Yazıyı ortalıyor. */
+  margin-bottom: 50px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.6); /* Yarı saydam siyah katman */
+  border-radius: 10px; /* Köşeleri yuvarlaklaştırır. */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Hafif gölge efekti veriyor.*/
+}
+
+
+
+
+
+
+
